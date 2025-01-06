@@ -109,9 +109,9 @@ async function getUsernameData(username) {
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "same-site",
             "sec-gpc": "1",
-            // Twitter recently, in an attempt to clamp down on web scraping, added a new header called "x-client-transaction-id".
-            // There is a fellow named "obfio" on Github that was able to create a generator for this header in Go through some
-            // very complicated reverse engineering. The explanation can be found on their blog https://antibot.blog 
+            // Twitter recently, in an attempt to clamp down on web scraping, added a new header to their API request headers called "x-client-transaction-id".
+            // There is a fellow named "obfio" on Github that was able to create a generator for this header in Go through some complicated reverse engineering. 
+            // The explanation can be found on their blog https://antibot.blog. Plan to revisit this at some point...
             // "x-client-transaction-id": "",
             "x-guest-token": `${guestToken}`,
             "x-twitter-active-user": "yes",
