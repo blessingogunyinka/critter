@@ -1,13 +1,17 @@
 # Critter
-Critter is a twitter front-end that allows you to view twitter search results and user profile tweets without an account. Uses react front-end with express backend. 
+Critter is a twitter front-end / twitter clone that allows you to view twitter search results and user profile tweets without an account. React front-end with express backend. 
 
 Crawl + Twitter = Critter
 
-## Update on why it's not working anymore :(
+## Update #1: why search and viewing a profile isn't working anymore :(
 
 Twitter recently, in an attempt to clamp down on web scraping, added a new header to their API request headers called "x-client-transaction-id".
 There is a fellow named "obfio" on Github that was able to create a generator for this header in Go through some complicated reverse engineering. 
 The explanation can be found on their blog https://antibot.blog. Plan to revisit this at some point...
+
+## Update #2: added ability to view sample search query results, since search isn't working anymore (see Update #1 above)
+
+https://github.com/user-attachments/assets/aa27e8dd-43d1-4481-9539-cf64405beef4
 
 ## How it works (how it used to work)
 
