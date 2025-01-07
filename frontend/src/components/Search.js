@@ -7,6 +7,7 @@ import { Stack } from "@mui/material" ;
 import { LuSearch } from "react-icons/lu";
 import axios from "axios" ;
 import { withErrorBoundary } from 'react-error-boundary' ;
+import { sampleSearchData } from "../sampleData/sampleSearchData.js" ; 
 
 function Search() { 
 
@@ -19,6 +20,12 @@ function Search() {
 
     const [searchParams, setSearchParams] = useSearchParams() ;  
     const location = useLocation() ;
+
+    const [displaySampleSearch, setDisplaySampleSearch] = React.useState(false) ; 
+
+    const defaultSearchQueryButtons = { random: false, bukayoSaka: false, lenyYoro: false, lamineYamal: false, philFoden: false }
+
+    const [sampleSearchQueryButtons, setSampleSearchQueryButtons] = React.useState(defaultSearchQueryButtons) ; 
 
 
     React.useEffect(() => {   
@@ -78,6 +85,29 @@ function Search() {
         }
     } 
 
+    function handleClickDisplaySampleSearchResultsButton() {
+        if (!displaySampleSearch) {
+            setTwitterSearchTweets(sampleSearchData.random) ; 
+            setSampleSearchQueryButtons({ ...defaultSearchQueryButtons, random: true }) ; 
+            setDisplaySampleSearch(true) ; 
+        } else {
+            setTwitterSearchTweets(null) ; 
+            setDisplaySampleSearch(false) ; 
+        }
+    }
+
+    function handleClickSampleSearchQueries(event) {
+        const buttonName = event.target.id ; 
+
+        if (!sampleSearchQueryButtons[buttonName]) {
+            const updatedSearchQueryButtons = { ...defaultSearchQueryButtons } ; 
+            updatedSearchQueryButtons[buttonName] =  !sampleSearchQueryButtons[buttonName] ; 
+            setSampleSearchQueryButtons(updatedSearchQueryButtons) ; 
+            setTwitterSearchTweets(sampleSearchData[buttonName]) ;
+        }
+
+    }
+
 
     return (
         <>
@@ -85,7 +115,7 @@ function Search() {
             direction="column"
             justifyContent="flex-start"
             alignItems="center"
-            spacing={0}
+            spacing={1.5}
             className="search-stack-container"
         >            
             <form className="search-form">
@@ -101,6 +131,58 @@ function Search() {
                     value={searchQueryInput}
                 /> 
             </form>
+            <div 
+                className="sample-search-data-button"
+                onClick={handleClickDisplaySampleSearchResultsButton}
+            >
+                <p>{!displaySampleSearch ? "Show" : "Hide"} Sample Search Query Results</p>
+            </div>
+            { displaySampleSearch ?
+            <Stack
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+                spacing={1}
+                className="sample-search-queries-stack"
+                sx={{ flexWrap: 'wrap' }}
+            >
+                <div 
+                    className={`sample-search-query-random-button${sampleSearchQueryButtons.random ? "-clicked" : "" }`}
+                    id="random"
+                    onClick={handleClickSampleSearchQueries}
+                >
+                    Random
+                </div>
+                <div 
+                    className={`sample-search-query-bukayo-saka-button${sampleSearchQueryButtons.bukayoSaka ? "-clicked" : "" }`}
+                    id="bukayoSaka"
+                    onClick={handleClickSampleSearchQueries}
+                >
+                    Bukayo Saka
+                </div>
+                <div 
+                    className={`sample-search-query-leny-yoro-button${sampleSearchQueryButtons.lenyYoro ? "-clicked" : "" }`}
+                    id="lenyYoro"
+                    onClick={handleClickSampleSearchQueries}
+                >
+                    Leny Yoro
+                </div>
+                <div 
+                    className={`sample-search-query-lamine-yamal-button${sampleSearchQueryButtons.lamineYamal ? "-clicked" : "" }`}
+                    id="lamineYamal"
+                    onClick={handleClickSampleSearchQueries}
+                >
+                    Lamine Yamal
+                </div>
+                <div 
+                    className={`sample-search-query-phil-foden-button${sampleSearchQueryButtons.philFoden ? "-clicked" : "" }`}
+                    id="philFoden"
+                    onClick={handleClickSampleSearchQueries}
+                >
+                    Phil Foden
+                </div>
+            </Stack> 
+            : null }
         </Stack>
         { twitterSearchTweets ?
         <React.Suspense fallback={<Loading />}>

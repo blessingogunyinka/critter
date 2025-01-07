@@ -1866,10 +1866,6 @@ body {
   transition: 0.2s ;  
 }
 
-.search-stack-container:hover {
-
-}
-
 .search-form { 
   position: relative ;  
   color: rgb(84, 87, 90) ; 
@@ -1880,6 +1876,17 @@ body {
   left: 41px ;  
   top: -13.5px ; 
   font-size: 20px ; 
+}
+
+.search-lusearch-icon {
+  color: rgb(128, 143, 152) ; 
+  margin: 0px ; 
+  padding: 0px ; 
+  width: 18px ; 
+  height: 18px ; 
+  position: absolute ; 
+  left: 15px ; 
+  top: 11px ; 
 }
 
 #search-input {
@@ -1914,20 +1921,91 @@ body {
   top: 13px ; 
 }
 
-.search-lusearch-icon {
-  color: rgb(128, 143, 152) ; 
-  margin: 0px ; 
-  padding: 0px ; 
-  width: 18px ; 
-  height: 18px ; 
-  position: absolute ; 
-  left: 15px ; 
-  top: 11px ; 
+/* ================ */
+
+.sample-search-data-button { 
+  
+  background-color: rgb(239, 243, 244) ;
+  width: fit-content ; 
+  height: 30px ;  
+  transition-duration: 0.2s ; 
+  border: 0px ; 
+  border-radius: 9999px ; 
+  padding-left: 17px ; 
+  padding-right: 17px ; 
+  color: rgb(84, 87, 90) ; 
+
+  cursor: pointer ;
+
+  display: flex ;
+  flex-direction: column ;
+  justify-content: center ;
+  align-content: center ;
+  
+} 
+
+.sample-search-data-button:hover {
+  background-color: rgb(29, 155, 240, 0.4) ;
+  transition-duration: 0.1s; 
 }
 
-.search-results-stack-container {
+.sample-search-data-button p {
+  margin: 0px ;
+  color: rgb(84, 87, 90) ; 
+  font-size: 15px ;
+}
+
+.sample-search-queries-stack {
+  row-gap: 8px ; 
+}
+
+.sample-search-query-random-button, .sample-search-query-bukayo-saka-button,
+.sample-search-query-leny-yoro-button, .sample-search-query-lamine-yamal-button,
+.sample-search-query-phil-foden-button,
+.sample-search-query-random-button-clicked, .sample-search-query-bukayo-saka-button-clicked,
+.sample-search-query-leny-yoro-button-clicked, .sample-search-query-lamine-yamal-button-clicked,
+.sample-search-query-phil-foden-button-clicked {
+  background-color: rgb(239, 243, 244) ;
+  width: fit-content ; 
+  height: 30px ;  
+  transition-duration: 0.2s ; 
+  border: 0px ; 
+  border-radius: 9999px ; 
+  padding-left: 17px ; 
+  padding-right: 17px ; 
+  color: rgb(84, 87, 90) ; 
+
+  cursor: pointer ;
+
+  display: flex ;
+  flex-direction: column ;
+  justify-content: center ;
+  align-content: center ;
 
 }
+
+.sample-search-query-random-button:hover, .sample-search-query-bukayo-saka-button:hover,
+.sample-search-query-leny-yoro-button:hover, .sample-search-query-lamine-yamal-button:hover,
+.sample-search-query-phil-foden-button:hover {
+  background-color: rgb(29, 155, 240, 0.4) ;
+  transition-duration: 0.1s; 
+}
+
+.sample-search-query-random-button-clicked, .sample-search-query-bukayo-saka-button-clicked,
+.sample-search-query-leny-yoro-button-clicked, .sample-search-query-lamine-yamal-button-clicked,
+.sample-search-query-phil-foden-button-clicked {
+  background-color: rgb(29, 155, 240, 0.4) ;
+}
+
+.sample-search-query-random > p, .sample-search-query-bukayo-saka > p,
+.sample-search-query-leny-yoro > p, .sample-search-query-lamine-yamal > p,
+.sample-search-query-phil-foden > p {
+  margin: 0px ;
+  color: rgb(84, 87, 90) ; 
+  font-size: 1.25cqw ; 
+  font-size: 15px ;
+}
+
 
 .search-results-border {
   border-top: 1px solid rgb(239, 243, 244) ;
@@ -1936,11 +2014,6 @@ body {
 
 /* ===================================================== */
 
-.twitter-x-icon {
-  
-}
-
-/* ===================================================== */ 
 
 /* Error Components */ 
 
@@ -2011,8 +2084,24 @@ body {
   width: 40px ; 
   height: 40px ; 
   margin: 0px ; 
-  margin-top: 200px ; 
-  margin-left: 280px ; 
   margin-top: 25% ; 
   margin-left: 45% ;
+}
+
+
+.feed-tweet-media-disabled {
+  color: rgb(165, 173, 180) ; 
+  background-color: rgb(46, 56, 78) ; 
+  border-radius: 16px ; 
+  padding: 15px ; 
+  height: 316px ; 
+  width: 498.95px ;
+  font-size: 15px ; 
+  margin-bottom: 15px ; 
+}
+
+.feed-tweet-media-disabled > div {
+  text-align: center ;
+  max-width: 440px ;
+  -webkit-font-smoothing: antialiased ;
 }

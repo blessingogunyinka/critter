@@ -2,9 +2,14 @@ import React from "react"
 import { Grid, Stack, ImageList, ImageListItem } from "@mui/material"  
 import { withErrorBoundary } from 'react-error-boundary'
 import GenericErrorFallback from "./GenericErrorFallback.js"
+import FeedTweetMediaDisabled from "./FeedTweetMediaDisabled.js"
 
 
 function FeedTweetMedia({ media }) {
+
+    if (media[0].ext_media_availability?.reason === "Dmcaed" && media[0].ext_media_availability?.status === "Unavailable") {
+        return <FeedTweetMediaDisabled />
+    }
 
     return (
         <Grid 
