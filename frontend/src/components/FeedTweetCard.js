@@ -3,6 +3,7 @@ import { Stack } from "@mui/material"
 import { tweetCardIconSvgPathData } from "./Svg.js"
 import { withErrorBoundary } from 'react-error-boundary'
 import GenericErrorFallback from "./GenericErrorFallback.js"
+import useValidateImageUrl from "../util/useValidateImageUrl.js"
 
 
 function FeedTweetCard({ card, tweetResultLegacy }) { 
@@ -20,6 +21,8 @@ function FeedTweetCard({ card, tweetResultLegacy }) {
     const unifiedCard = unifiedCardFunction() ; 
 
     const cardImageOriginalSize = card.legacy?.binding_values?.find(item => item.key === "thumbnail_image_original")?.value?.image_value?.url ;
+
+    const cardSummaryImageOriginalSize =  card.legacy?.binding_values?.find(item => item.key === "summary_photo_image_original")?.value?.image_value?.url ; 
 
     const unifiedCardImage = unifiedCard?.media_entities[unifiedCard?.component_objects?.media_1?.data?.id]?.media_url_https ; 
 
@@ -40,9 +43,17 @@ function FeedTweetCard({ card, tweetResultLegacy }) {
 
     const cardSpaces = card.legacy?.binding_values?.find(item => item.key === "narrow_cast_space_type") ;  
 
+    const cardSummaryImageOriginalSizeValidation = useValidateImageUrl(cardSummaryImageOriginalSize) ; 
+
+    const cardImageFullSizeValidation = useValidateImageUrl(cardImageFullSize) ; 
+    const unifiedCardValidation = useValidateImageUrl(unifiedCard) ;
+
+
     return (
         <>
-            { cardImageFullSize || unifiedCard ?
+            { cardImageFullSizeValidation || unifiedCardValidation ?
+            // cardLargeThumbnailImageValidation ?
+            // cardImageFullSize || unifiedCard ?
             <Stack 
                 direction="column" 
                 justifyContent="flex-start"
@@ -58,7 +69,7 @@ function FeedTweetCard({ card, tweetResultLegacy }) {
                         src={cardImageFullSize || unifiedCardImage}   
                         className="feed-tweet-card-large-thumbnail-image"
                     />
-                        <div className="feed-tweet-card-large-thumbnail-title">{cardTitle}</div>
+                    <div className="feed-tweet-card-large-thumbnail-title">{cardTitle}</div>
                 </a>
                 <p className="feed-tweet-card-large-thumbnail-domain">
                     <a
@@ -84,15 +95,19 @@ function FeedTweetCard({ card, tweetResultLegacy }) {
                     spacing={0} 
                     className="feed-tweet-card-left-portion-stack-container"
                 >
-                    { !cardLegacyBindingValues.find(item => item.key.includes("thumbnail")) ? 
-                        
+                    { !cardLegacyBindingValues.find(item => item.key.includes("thumbnail")) || !cardSummaryImageOriginalSizeValidation ? 
                     <svg 
-                        className="feed-tweet-card-icon"
+                        className="feed-tweet-card-left-portion-icon"
                         viewBox="0 0 24 24"
                     >
                         <path d={tweetCardIconSvgPathData}></path> 
                     </svg>
-                    : null }
+                    : 
+                    <img
+                        className="feed-tweet-card-left-portion-image"
+                        src={cardImageOriginalSize || cardSummaryImageOriginalSize} 
+                    /> 
+                    }
                 </Stack>
                 <Stack
                     direction="column"

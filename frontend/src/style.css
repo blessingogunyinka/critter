@@ -1239,7 +1239,7 @@ body {
   background-color: rgba(247,249,249,1.00) ; 
 }
 
-.feed-tweet-card-icon-container {
+/* .feed-tweet-card-icon-container {
   background-color: aliceblue ; 
   width: 129px ; 
   height: 129px ; 
@@ -1247,16 +1247,24 @@ body {
   border-bottom-left-radius: 16px ; 
   margin: 0px ; 
   padding: 0px ; 
-}
+} */
 
 .feed-tweet-card-left-portion-thumbnail-image {
 
 }
 
-.feed-tweet-card-icon {
+.feed-tweet-card-left-portion-icon {
   fill: rgba(83,100,113,1.00) ; 
   width: 30px ; 
   height: 30px ; 
+}
+
+.feed-tweet-card-left-portion-image {
+  width: inherit ; 
+  height: inherit ;
+  border-top-left-radius: 16px ; 
+  border-bottom-left-radius: 16px ;
+  object-fit: cover ;  
 }
 
 .feed-tweet-card-right-portion-stack-container {
