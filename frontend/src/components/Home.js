@@ -3,12 +3,23 @@ import { Stack } from "@mui/material" ;
 import { LuSearch } from "react-icons/lu";
 import { useNavigate } from "react-router-dom" 
 import { withErrorBoundary } from 'react-error-boundary' ;
+import Profile from './Profile' ; 
+import { sampleProfileData } from "../sampleData/sampleProfileData.js" ; 
+import Loading from './Loading' ;
 
 
 function Home() { 
 
     const [usernameSubmission, setUsernameSubmission] = React.useState(null) ;   
     const [usernameInput, setUsernameInput] = React.useState(null) ;  
+
+    const [displaySampleProfile, setDisplaySampleProfile] = React.useState(false) ; 
+
+    const [sampleProfile, setSampleProfile] = React.useState(null) ; 
+
+    const defaultProfileButtons = { onefootball: false, realmadrid: false }
+
+    const [sampleProfileButtons, setSampleProfileButtons] = React.useState(defaultProfileButtons) ; 
 
     const navigate = useNavigate() ;  
 
@@ -41,12 +52,36 @@ function Home() {
         }
     } 
 
+    function handleClickDisplaySampleProfileButton() {
+        if (!displaySampleProfile) {
+            setSampleProfile(<Profile sampleProfileData={sampleProfileData.onefootball} />)
+            setSampleProfileButtons({ ...defaultProfileButtons, onefootball: true }) ; 
+            setDisplaySampleProfile(true) ; 
+        } else {
+            setSampleProfile(null) ; 
+            setDisplaySampleProfile(false) ; 
+        }
+    }
+
+    function handleClickSampleProfile(event) {
+        const buttonName = event.target.id ; 
+
+        if (!sampleProfileButtons[buttonName]) {
+            const updatedProfileButtons = { ...defaultProfileButtons } ; 
+            updatedProfileButtons[buttonName] =  !sampleProfileButtons[buttonName] ; 
+            setSampleProfileButtons(updatedProfileButtons) ; 
+            setSampleProfile(<Profile sampleProfileData={sampleProfileData[buttonName]} />)
+        }
+
+    }
+
     return (
+        <>
         <Stack
             direction="column"
             justifyContent="flex-start"
             alignItems="center"
-            spacing={0}
+            spacing={2}
             className="home-enter-username-stack-container"
         >
             <form className="home-enter-username-form">
@@ -64,7 +99,45 @@ function Home() {
                     value={usernameInput}
                 /> 
             </form>
+            <div 
+                className="sample-profile-button"
+                onClick={handleClickDisplaySampleProfileButton}
+            >
+                <p>{!displaySampleProfile ? "Show" : "Hide"} Sample Profile</p>
+            </div>
+
+            { displaySampleProfile ?
+            <Stack
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+                spacing={1}
+                className="sample-profile-stack"
+                sx={{ flexWrap: 'wrap' }}
+            >
+                <div 
+                    className={`sample-profile-onefootball-button${sampleProfileButtons.onefootball ? "-clicked" : "" }`}
+                    id="onefootball"
+                    onClick={handleClickSampleProfile}
+                >
+                    @onefootball
+                </div>
+                <div 
+                    className={`sample-profile-realmadrid-button${sampleProfileButtons.realmadrid ? "-clicked" : "" }`}
+                    id="realmadrid"
+                    onClick={handleClickSampleProfile}
+                >
+                    @realmadrid
+                </div>
+            </Stack> 
+            : null }
+
+            <React.Suspense fallback={<Loading />}>
+                {sampleProfile}
+            </React.Suspense>
         </Stack>
+
+        </>
     )
 }
 

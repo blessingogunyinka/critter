@@ -8,13 +8,13 @@ import { calendarIconSvgPathData, locationIconSvgPathData, urlIconSvgPathData,
 
 import { Avatar, Stack } from '@mui/material' ; 
 import { useParams } from "react-router-dom" ;
-import { Parser } from "html-to-react";  
+import { Parser } from "html-to-react" ;  
 import { withErrorBoundary } from 'react-error-boundary' 
 import GenericErrorFallback from "./GenericErrorFallback.js"
 import axios from "axios" ;
 import VerifiedCheck from "./VerifiedCheck.js"
 
-function Profile() {
+function Profile({ sampleProfileData }) {
 
     const params = useParams() ;
     const [twitterProfileData, setTwitterProfileData] = React.useState(null) ;  
@@ -40,10 +40,13 @@ function Profile() {
                 setDisplayFallback(<div style={{ marginLeft: "30%", marginTop: "35%" }}><GenericErrorFallback /></div>) ; 
             }
         }
-        if (params.username !== null) {
+        // if (params.username !== null) {
+        if (params.username) {
             getTwitterProfileData(params.username) ;  
+        } else if (sampleProfileData) {
+            setTwitterProfileData(sampleProfileData) ; 
         }
-    }, []) ; 
+    }, [sampleProfileData]) ; 
 
 
     const userLegacy = twitterProfileData?.usernameData?.data?.user?.result?.legacy 
@@ -52,7 +55,7 @@ function Profile() {
     const userResult = twitterProfileData?.usernameData?.data?.user?.result 
     || twitterProfileData?.userTweetsData[0]?.data?.tweetResult?.result?.core?.user_results?.result ; 
 
-    const userTitle = userLegacy?.name // 
+    const userTitle = userLegacy?.name 
     const postsCount = userLegacy?.statuses_count
     const atName = userLegacy?.screen_name
     const followingCount = userLegacy?.friends_count
@@ -152,6 +155,7 @@ function Profile() {
 
         <div className="profile-box-container">
             
+            { !sampleProfileData ? 
             <Box 
                 className="profile-nav-bar"
                 height={53}
@@ -163,6 +167,19 @@ function Profile() {
                 </div> 
                 <p className="profile-nav-bar-posts-count">{formatCountNumber(postsCount)} posts</p> 
             </Box> 
+            : 
+            <Box 
+                className="profile-nav-bar-sample-profile"
+                height={53}
+                width={598}
+            >
+                <div className="profile-nav-bar-user-title">
+                    <b>{userTitle}</b>
+                    <VerifiedCheck hasBlueCheck={hasBlueCheck} verifiedType={verifiedType} isProfileVerifiedCheck={true} /> 
+                </div> 
+                <p className="profile-nav-bar-posts-count">{formatCountNumber(postsCount)} posts</p> 
+            </Box>
+            }
             
             <Box 
                 className="profile-info-box"

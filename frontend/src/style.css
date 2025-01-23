@@ -213,7 +213,7 @@ body {
   
 }
 
-.profile-nav-bar {
+.profile-nav-bar, .profile-nav-bar-sample-profile {
   position: fixed ; 
   margin-bottom: 30px ; 
 
@@ -225,6 +225,13 @@ body {
   -webkit-backdrop-filter: blur(12px) saturate(180%) ;
   backdrop-filter: blur(12px) saturate(180%) ;
   cursor: pointer ; 
+}
+
+.profile-nav-bar-sample-profile {
+  position: sticky ; 
+  top: 0 ; 
+  margin-bottom: -49px ; 
+  border-top: 1px solid rgb(239, 243, 244) ;
 }
 
 
@@ -1821,6 +1828,17 @@ body {
   font-size: 20px ; 
 }
 
+.home-enter-username-lusearch-icon {
+  color: rgb(128, 143, 152) ; 
+  margin: 0px ; 
+  padding: 0px ; 
+  width: 18px ; 
+  height: 18px ; 
+  position: absolute ; 
+  left: 15px ; 
+  top: 11px ; 
+}
+
 #home-enter-username-input {
   background-color: rgb(239, 243, 244) ; 
   width: 100% ; 
@@ -1843,7 +1861,7 @@ body {
   outline: 0.5px solid rgb(29, 155, 240) ; 
 }
 
-.home-enter-username-search-icon {
+/* .home-enter-username-search-icon {
   fill: rgb(29, 155, 240) ; 
   margin: 0px ; 
   padding: 0px ; 
@@ -1852,18 +1870,98 @@ body {
   position: absolute ; 
   left: 15px ; 
   top: 13px ; 
+} */
+
+
+.sample-profile-button { 
+  
+  background-color: rgb(239, 243, 244) ;
+  width: fit-content ; 
+  height: 30px ;  
+  transition-duration: 0.2s ; 
+  border: 0px ; 
+  border-radius: 9999px ; 
+  padding-left: 17px ; 
+  padding-right: 17px ; 
+  color: rgb(84, 87, 90) ; 
+
+  cursor: pointer ;
+
+  display: flex ;
+  flex-direction: column ;
+  justify-content: center ;
+  align-content: center ;
+
+  white-space: nowrap ;
+  overflow: hidden ;
+  text-overflow: ellipsis ; 
+  
+} 
+
+.sample-profile-button:hover {
+  background-color: rgb(29, 155, 240, 0.4) ;
+  transition-duration: 0.1s; 
 }
 
-.home-enter-username-lusearch-icon {
-  color: rgb(128, 143, 152) ; 
-  margin: 0px ; 
-  padding: 0px ; 
-  width: 18px ; 
-  height: 18px ; 
-  position: absolute ; 
-  left: 15px ; 
-  top: 11px ; 
+.sample-profile-button p {
+  margin: 0px ;
+  color: rgb(84, 87, 90) ; 
+  font-size: 15px ;
 }
+
+.sample-profile-stack {
+  row-gap: 8px ; 
+}
+
+.sample-profile-onefootball-button, .sample-profile-realmadrid-button,
+.sample-profile-leny-yoro-button, .sample-profile-lamine-yamal-button,
+.sample-profile-phil-foden-button,
+.sample-profile-onefootball-button-clicked, .sample-profile-realmadrid-button-clicked,
+.sample-profile-leny-yoro-button-clicked, .sample-profile-lamine-yamal-button-clicked,
+.sample-profile-phil-foden-button-clicked {
+  background-color: rgb(239, 243, 244) ;
+  width: fit-content ; 
+  height: 30px ;  
+  transition-duration: 0.2s ; 
+  border: 0px ; 
+  border-radius: 9999px ; 
+  padding-left: 17px ; 
+  padding-right: 17px ; 
+  color: rgb(84, 87, 90) ; 
+
+  cursor: pointer ;
+
+  display: flex ;
+  flex-direction: column ;
+  justify-content: center ;
+  align-content: center ;
+
+}
+
+.sample-profile-onefootball-button:hover, .sample-profile-realmadrid-button:hover,
+.sample-profile-leny-yoro-button:hover, .sample-profile-lamine-yamal-button:hover,
+.sample-profile-phil-foden-button:hover {
+  background-color: rgb(29, 155, 240, 0.4) ;
+  transition-duration: 0.1s; 
+}
+
+.sample-profile-onefootball-button-clicked, .sample-profile-realmadrid-button-clicked,
+.sample-profile-leny-yoro-button-clicked, .sample-profile-lamine-yamal-button-clicked,
+.sample-profile-phil-foden-button-clicked {
+  background-color: rgb(29, 155, 240, 0.4) ;
+}
+
+.sample-profile-onefootball > p, .sample-profile-realmadrid > p,
+.sample-profile-leny-yoro > p, .sample-profile-lamine-yamal > p,
+.sample-profile-phil-foden > p {
+  margin: 0px ;
+  color: rgb(84, 87, 90) ; 
+  font-size: 1.25cqw ; 
+  font-size: 15px ;
+}
+
+
+
 
 
 /* ===================================================== */ 
