@@ -1,0 +1,14 @@
+{
+  "name": "critter",
+  "version": "1.0.0",
+  "description": "Critter is a twitter front-end / twitter clone that allows you to view twitter search results and user profile tweets without an account. React front-end with express backend.",
+  "main": "index.js",
+  "scripts": {
+    "install-frontend": "cd frontend && npm install",
+    "build-frontend": "cd frontend && npm run build",
+    "start-frontend": "cd frontend && npm run start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
